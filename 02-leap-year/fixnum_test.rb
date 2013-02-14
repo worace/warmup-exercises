@@ -1,4 +1,4 @@
-require_relative './fixnum'
+require_relative './worace_fixnum'
 require 'minitest/autorun'
 
 class FixnumTest < MiniTest::Unit::TestCase

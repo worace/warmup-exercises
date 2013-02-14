@@ -1,4 +1,4 @@
-require_relative './year'
+require_relative './worace_year'
 require 'minitest/autorun'
 
 class YearTest < MiniTest::Unit::TestCase
