@@ -1,4 +1,4 @@
-require_relative './scrabble'
+require_relative './worace_scrabble'
 require 'minitest/autorun'
 
 class ScrabbleTest < MiniTest::Unit::TestCase
@@ -16,5 +16,27 @@ class ScrabbleTest < MiniTest::Unit::TestCase
 
   def test_case_insensitive
     assert_equal 20, Scrabble.score("MULTIBILLIONAIRE")
+  end
+
+  def test_double_word
+    assert_equal 12, Scrabble.score("street", :double_word)
+  end
+
+  def test_triple_word
+    assert_equal 18, Scrabble.score("street", :triple_word)
+  end
+
+  def test_triple_letter
+    assert_equal 8, Scrabble.score("street", :triple_letter_3)
+  end
+
+  def test_double_and_triple_letter
+    assert_equal 9, Scrabble.score("street", :triple_letter_3, :double_letter_1)
+  end
+
+  def test_allows_any_order_for_mods
+    assert_equal 18, Scrabble.score("street", :double_word, :triple_letter_3, :double_letter_1)
+    assert_equal 18, Scrabble.score("street", :triple_letter_3, :double_word, :double_letter_1)
+    assert_equal 18, Scrabble.score("street",  :double_letter_1, :triple_letter_3, :double_word)
   end
 end
