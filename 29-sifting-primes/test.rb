@@ -1,7 +1,36 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative './example'
 
+class Sieve
+  attr_reader :target
+  def initialize(target)
+    @target = target
+    @range = Array(2...target/2)
+    @list = Array(2...target)
+  end
+
+  def range
+    @range
+  end
+
+  def list
+    @list
+  end
+
+  def primes
+    #puts "starting with"
+    #puts list.inspect
+    range.each do |num|
+      #puts "checking for multiples of #{num}"
+      (2..target).each do |multiple|
+        #puts "removing #{num} * #{multiple} from list"
+        list.delete(num * multiple)
+      end
+    end
+    list
+  end
+
+end
 class SieveTest < MiniTest::Unit::TestCase
 
   def test_primes

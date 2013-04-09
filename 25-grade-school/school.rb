@@ -3,11 +3,12 @@ class School
 
   def initialize(name)
     self.name = name
-    self.db = {}
+    self.db = Hash.new do |hash,key|
+      hash[key] = []
+    end
   end
 
   def add(student_name, grade)
-    db[grade] = [] if db[grade].nil?
     db[grade] << student_name
   end
 
